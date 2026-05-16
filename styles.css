@@ -209,14 +209,12 @@ th {
     justify-content: center;
 }
 
-/* הגבלת ה-canvas של העוגה בלבד שלא יתפשט לכל עבר */
 #pieChart {
     max-width: 250px !important;
     max-height: 250px !important;
     margin: 0 auto;
 }
 
-/* גרף העמודות יכול להישאר רחב וגדול */
 #barChart {
     width: 100% !important;
     height: 100% !important;
