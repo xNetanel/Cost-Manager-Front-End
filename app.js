@@ -8,7 +8,7 @@ let pieChartInstance = null;
 let barChartInstance = null;
 
 // כתובת ה-URL הדיפולטיבית לגיבוי (שנה אותה לכתובת השרת האמיתי שלך לאחר ההעלאה)
-const DEFAULT_SERVER_URL = "https://raw.githubusercontent.com/yourusername/yourrepo/main/rates.json";
+const DEFAULT_SERVER_URL = "https://raw.githubusercontent.com/xNetanel/Cost-Manager-Front-End/refs/heads/main/rates.json";
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. אתחול מסד הנתונים דרך הספרייה
