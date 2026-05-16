@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Manager - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- טעינת ספרית Chart.js להצגת דיאגרמות עוגה ועמודות -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <h1>💰 Cost Manager Application</h1>
+        <nav>
+            <button onclick="switchTab('dashboard')">Dashboard</button>
+            <button onclick="switchTab('settings')">Settings</button>
+        </nav>
+    </div>
+</header>
+
+<main class="main-container">
+
+    <!-- מסך דאשבורד מרכזי -->
+    <section id="dashboard-tab" class="tab-content active">
+        <div class="grid-container">
+
+            <!-- כרטיסייה 1: הוספת הוצאה חדשה -->
+            <div class="card">
+                <h2>Add New Cost Item</h2>
+                <form id="cost-form">
+                    <div class="form-group">
+                        <label for="cost-sum">Sum (Amount):</label>
+                        <input type="number" id="cost-sum" step="0.01" required min="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="cost-currency">Currency:</label>
+                        <select id="cost-currency">
+                            <option value="USD">USD ($)</option>
+                            <option value="ILS">ILS (₪)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="EURO">EURO (€)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cost-category">Category:</label>
+                        <select id="cost-category">
+                            <option value="Food">Food</option>
+                            <option value="Education">Education</option>
+                            <option value="Car">Car</option>
+                            <option value="Housing">Housing</option>
+                            <option value="Entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cost-description">Description:</label>
+                        <input type="text" id="cost-description" required placeholder="e.g., Grocery shopping">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Cost Item</button>
+                </form>
+            </div>
+
+            <!-- כרטיסייה 2: פילוח ודוחות לפי חודש/שנה -->
+            <div class="card">
+                <h2>Report Filters</h2>
+                <div class="filter-row">
+                    <div class="form-group">
+                        <label for="filter-year">Year:</label>
+                        <input type="number" id="filter-year" value="2026">
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-month">Month:</label>
+                        <select id="filter-month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-currency">Display Currency:</label>
+                        <select id="filter-currency">
+                            <option value="USD">USD</option>
+                            <option value="ILS">ILS</option>
+                            <option value="GBP">GBP</option>
+                            <option value="EURO">EURO</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="updateDashboardView()" class="btn-secondary">Generate Report & Charts</button>
+
+                <div class="report-summary">
+                    <h3>Total Spending: <span id="total-amount-display">0.00 USD</span></h3>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- אזור התצוגה הוויזואלית של הגרפים והטבלה -->
+        <div class="management-details">
+            <div class="card chart-container-box">
+                <h3>Category Breakdown (Pie Chart)</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="card chart-container-box">
+                <h3>Annual Monthly View (Bar Chart)</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card table-card">
+            <h3>Detailed Items List</h3>
+            <div class="table-wrapper">
+                <table id="items-table">
+                    <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Original Sum</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- שורות הטבלה יוזרקו דינמית -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- מסך הגדרות URL לשערי חליפין -->
+    <section id="settings-tab" class="tab-content">
+        <div class="card">
+            <h2>Configuration Settings</h2>
+            <p>Provide a custom endpoint URL to fetch live currency exchange rates dynamically.</p>
+            <div class="form-group">
+                <label for="settings-url">Exchange Rates Server URL:</label>
+                <input type="url" id="settings-url" class="full-width-input" placeholder="https://example.com/rates.json">
+            </div>
+            <button onclick="saveSettings()" class="btn-primary">Update URL & Fetch Rates</button>
+            <div id="settings-status" class="status-message"></div>
+        </div>
+    </section>
+
+</main>
+
+<!-- טעינת תשתיות הנתונים ולוגיקת האפליקציה -->
+<script src="db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
