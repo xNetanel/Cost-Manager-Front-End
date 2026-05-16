@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
     <title>Cost Manager - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- טעינת ספרית Chart.js להצגת דיאגרמות עוגה ועמודות -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <header>
     <div class="header-container">
-        <h1>💰 Cost Manager Application</h1>
+        <h1>Cost Manager Application</h1>
         <nav>
             <button onclick="switchTab('dashboard')">Dashboard</button>
             <button onclick="switchTab('settings')">Settings</button>
@@ -22,11 +22,9 @@
 
 <main class="main-container">
 
-    <!-- מסך דאשבורד מרכזי -->
     <section id="dashboard-tab" class="tab-content active">
         <div class="grid-container">
 
-            <!-- כרטיסייה 1: הוספת הוצאה חדשה -->
             <div class="card">
                 <h2>Add New Cost Item</h2>
                 <form id="cost-form">
@@ -61,7 +59,6 @@
                 </form>
             </div>
 
-            <!-- כרטיסייה 2: פילוח ודוחות לפי חודש/שנה -->
             <div class="card">
                 <h2>Report Filters</h2>
                 <div class="filter-row">
@@ -105,7 +102,6 @@
 
         </div>
 
-        <!-- אזור התצוגה הוויזואלית של הגרפים והטבלה -->
         <div class="management-details">
             <div class="card chart-container-box">
                 <h3>Category Breakdown (Pie Chart)</h3>
@@ -130,14 +126,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- שורות הטבלה יוזרקו דינמית -->
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
 
-    <!-- מסך הגדרות URL לשערי חליפין -->
     <section id="settings-tab" class="tab-content">
         <div class="card">
             <h2>Configuration Settings</h2>
@@ -153,7 +147,6 @@
 
 </main>
 
-<!-- טעינת תשתיות הנתונים ולוגיקת האפליקציה -->
 <script src="db.js"></script>
 <script src="app.js"></script>
 </body>
